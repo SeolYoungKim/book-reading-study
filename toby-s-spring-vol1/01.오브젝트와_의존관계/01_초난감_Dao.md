@@ -66,4 +66,16 @@
 
 
 ## 궁금한 것
+static 블록 초기화가 되려면 Driver 구현체를 호출해야 한다는 얘기니까, 대체 어디서 호출해주나 궁금했는데 DriverManager의 ensureDriversInitialized() 메서드가 수행되면서 Driver의 static 블록이 수행되네욤
 
+DriverManager -> ServiceLoader 호출 (Driver.class 넘김) -> ServiceLoader 생성 (초기화 될 때 Driver의 인터페이스 정보가 등록됨) -> 어떠한 이유로 Iterator에서 공급자(Driver 구현체)의 인스턴스를 반환함 <——— 이 때 초기화가 되네요
+
+![img_1.png](img_1.png)
+Iterator를 돌면서 `next().get()`을 호출
+
+![img_2.png](img_2.png)
+`newInstance()` 호출
+
+
+![img_3.png](img_3.png)
+`ctor` : Driver의 constructor → 리플렉션을 통해 생성 → p에는 Driver 구현체가 들어서게됨. (이 때 Driver 클래스 초기화)
