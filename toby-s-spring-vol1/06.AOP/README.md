@@ -67,9 +67,14 @@
 
 
 ### Advisor
+![img_5.png](img_5.png)
 - Pointcut과 Advice를 따로 등록하면 어떤 어드바이스에 대해 어떤 포인트컷을 적용할지 애매해지기 때문에, Advisor로 한데 묶어서 세팅해야 한다. 
 
+### 빈 후처리기
+![img_6.png](img_6.png)
 
+
+---
 
 ## 중요한 것
 
